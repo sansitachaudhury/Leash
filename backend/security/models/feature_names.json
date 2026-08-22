@@ -1,0 +1,10 @@
+[
+  "tool_sensitivity",
+  "step_index_norm",
+  "seconds_since_start",
+  "call_rate",
+  "is_new_tool_for_session",
+  "arg_length",
+  "out_of_scope_keyword_hits",
+  "repeat_tool_streak"
+]

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leash — Runtime Security for AI Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">Leash</span>
+    <span class="brand-tag">Runtime Security for AI Agents</span>
+  </div>
+  <div class="status" id="connStatus">
+    <span class="dot dot-off" id="connDot"></span>
+    <span id="connLabel">disconnected</span>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT: controls + event log -->
+  <section class="panel panel-left">
+    <div class="card">
+      <h2>Run a Session</h2>
+      <label class="field-label">Task</label>
+      <textarea id="taskInput" rows="2">Process this week's approved vendor invoice for Acme Supplies.</textarea>
+
+      <label class="field-label">Hijack scenario (live mode only)</label>
+      <select id="scenarioSelect">
+        <option value="">None — normal task</option>
+        <option value="document_injection">Injection via document</option>
+        <option value="tool_output_injection">Injection via tool output</option>
+      </select>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btnReplay">▶ Run Replay Demo</button>
+        <button class="btn btn-secondary" id="btnLive">⚡ Run Live Agent</button>
+      </div>
+      <p class="hint" id="liveHint">Replay works offline. Live mode needs <code>GROQ_API_KEY</code> set on the backend.</p>
+
+      <label class="field-label">Replay scenario</label>
+      <select id="replayScenarioSelect">
+        <option value="document_injection">Injection via document (invoice hijack)</option>
+        <option value="tool_output_injection">Injection via tool output (ticket hijack)</option>
+      </select>
+    </div>
+
+    <div class="card grow">
+      <h2>Session Log</h2>
+      <div class="log" id="eventLog">
+        <p class="log-empty">No session running yet. Click "Run Replay Demo" to see Leash in action.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: timeline + incidents -->
+  <section class="panel panel-right">
+    <div class="card">
+      <h2>Live Anomaly Timeline</h2>
+      <div class="chart-wrap">
+        <canvas id="riskChart" height="180"></canvas>
+      </div>
+      <div class="legend">
+        <span><i class="swatch swatch-allow"></i>Allow (&lt;45)</span>
+        <span><i class="swatch swatch-review"></i>Review (45–70)</span>
+        <span><i class="swatch swatch-block"></i>Block (≥70)</span>
+      </div>
+    </div>
+
+    <div class="card grow">
+      <h2>Incident Reports</h2>
+      <div class="incidents" id="incidentList">
+        <p class="log-empty">No incidents yet.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

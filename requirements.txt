@@ -1,0 +1,15 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+websockets==13.1
+pydantic==2.9.2
+python-dotenv==1.0.1
+groq==0.11.0
+
+scikit-learn==1.5.2
+numpy==1.26.4
+pandas==2.2.2
+joblib==1.4.2
+
+sentence-transformers==3.1.1
+shap==0.46.0
+matplotlib==3.9.2
